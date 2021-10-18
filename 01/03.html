@@ -8,7 +8,39 @@
 </head>
 <body>
     <script>
-        
+        /**
+         * @param {number[]} nums
+         * @return {number}
+         */
+        var nums = [2, 3, 1, 0, 2, 5, 3];
+
+        // var findRepeatNumber = function(nums) {
+        //     for (var i = 0; i < nums.length - 1; i++) {
+        //         for (var j = i + 1; j < nums.length; j++) {
+        //             if (nums[i] == nums[j]) 
+        //                 return nums[i]
+        //         }
+        //     }
+        // };
+
+        var findRepeatNumber = function(nums) {
+            for (var i = 0; i < nums.length; i++) {
+                if (nums[i] == i) {
+                    continue;
+                }
+                else if (nums[i] == nums[nums[i]]) {
+                    return nums[i];
+                }
+                else {
+                    var x = nums[i];
+                    nums[i] = nums[x];
+                    nums[x] = x;
+                    i--;
+                }
+            }
+        };
+
+        console.log(findRepeatNumber(nums));
     </script>
 </body>
 </html>
