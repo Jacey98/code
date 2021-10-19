@@ -1,46 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
+
 <body>
     <script>
         /**
          * @param {number[]} nums
          * @return {number}
          */
-        var nums = [2, 3, 1, 0, 2, 5, 3];
+        var nums = [3, 1, 2, 5, 4, 5, 6, 7, 8, 9];
 
-        // var findRepeatNumber = function(nums) {
-        //     for (var i = 0; i < nums.length - 1; i++) {
-        //         for (var j = i + 1; j < nums.length; j++) {
-        //             if (nums[i] == nums[j]) 
-        //                 return nums[i]
-        //         }
-        //     }
-        // };
+        var findRepeatNumber = function (nums) {
+            // 1.1
+            //     for (var i = 0; i < nums.length - 1; i++) {
+            //         for (var j = i + 1; j < nums.length; j++) {
+            //             if (nums[i] == nums[j])
+            //                 return nums[i];
+            //         }
+            //     }
+            // };
 
-        var findRepeatNumber = function(nums) {
-            for (var i = 0; i < nums.length; i++) {
-                if (nums[i] == i) {
-                    continue;
-                }
-                else if (nums[i] == nums[nums[i]]) {
-                    return nums[i];
-                }
-                else {
-                    var x = nums[i];
-                    nums[i] = nums[x];
-                    nums[x] = x;
-                    i--;
-                }
-            }
+            // 1.2
+            //     for (var i = 0; i < nums.length; i++) {
+            //         if (nums[i] == i) {
+            //             continue;
+            //         }
+            //         else if (nums[i] == nums[nums[i]]) {
+            //             return nums[i];
+            //         }
+            //         else {
+            //             var x = nums[i];
+            //             nums[i] = nums[x];
+            //             nums[x] = x;
+            //             i--;
+            //         }
+            //     }
+            // };
+
+            // 2
+            /**
+             * 数组nums，长度nums.length
+             * start = 1, end = nums.length
+             *
+             * if (start != end)
+             *     从中间 middle = Math.floor((end + start) / 2)
+             *     划分为两部分，start ~ middle, middle + 1 ~ end
+             *     对第一部分查找总共出现的次数 t
+             *     if t > middle - start + 1
+             *         划分 start = start, end = middle
+             *     else
+             *         划分 start = middle + 1, end = end
+             * else
+             *     查找总共出现的次数 t
+             *     if t > 1
+             *         return start
+             *
+             * 查找的函数
+             * function find(){
+             *     统计在start ~ end范围内的个数
+             * }
+             */
+            var num;
+            num = split(0, nums.length - 1, nums);
+            return num;
         };
+
+        function split(start, end, nums) {
+            if (start != end) {
+                var middle = Math.floor((end + start) / 2);
+                var t = find(start, middle, nums);
+                if (t > middle - start + 1) {
+                    num = split(start, middle, nums);
+                } else {
+                    num = split(middle + 1, end, nums);
+                }
+            } else {
+                var t = find(start, end, nums);
+                if (t > 1) num = start;
+            }
+            return num;
+        }
+
+        function find(start, end, nums) {
+            var t = 0;
+            for (var i = 0; i < nums.length; i++) {
+                if (nums[i] >= start && nums[i] <= end) t++;
+            }
+            return t;
+        }
 
         console.log(findRepeatNumber(nums));
     </script>
 </body>
+
 </html>
