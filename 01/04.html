@@ -15,9 +15,26 @@
          * @param {number} target
          * @return {boolean}
          */
-        var findNumberIn2DArray = function(matrix, target) {
+        // var matrix = [[1, 2, 8, 9], [2, 4, 9, 12], [4, 7, 10, 13], [6, 8, 11, 15]];
+        var matrix = [[]];
+        var target = 5;
 
+        var findNumberIn2DArray = function (matrix, target) {
+            if (matrix.length == 0 || (matrix.length > 0 && matrix[0].length == 0))
+                return false;
+            var i = 0, j = matrix[0].length - 1;
+            do {
+                if (target == matrix[i][j])
+                    return true;
+                else if (target > matrix[i][j])
+                    i++;
+                else
+                    j--;
+            } while (i < matrix.length && j >= 0)
+            return false;
         };
+
+        console.log(findNumberIn2DArray(matrix, target));
     </script>
 </body>
 

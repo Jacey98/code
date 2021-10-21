@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+        * @param {string} s
+        * @return {string}
+        */
+        var s = "We are happy.";
+
+        var replaceSpace = function (s) {
+            var r = '';
+            if (s.length == 0)
+                return r;
+            for (var i = 0; i < s.length; i++) {
+                if (s[i] == ' ')
+                    r = r.concat("%20");
+                else
+                    r = r.concat(s[i]);
+            }
+            return r;
+        };
+
+        console.log(replaceSpace(s));
+    </script>
+</body>
+
+</html>
