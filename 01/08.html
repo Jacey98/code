@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*function TreeLinkNode(x){
+            this.val = x;
+            this.left = null;
+            this.right = null;
+            this.next = null;
+        }*/
+
+        function GetNext(pNode) {
+            var node;
+            if (pNode.right) {
+                node = pNode.right;
+                while (node.left) {
+                    node = node.left;
+                }
+                return node;
+            }
+            else if (!pNode.next) {
+                return null;
+            }
+            else if (pNode == pNode.next.left) {
+                return pNode.next;
+            }
+            else {
+                while (pNode != pNode.next.left) {
+                    pNode = pNode.next;
+                    if (!pNode.next) {
+                        return null;
+                    }
+                }
+                return pNode.next;
+            }
+        }
+    </script>
+</body>
+
+</html>
