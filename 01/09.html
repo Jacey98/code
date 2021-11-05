@@ -11,7 +11,47 @@
 <body>
     <script>
 
-        console.log();
+        var CQueue = function () {
+            this.queue = []
+            this.queue2 = []
+        };
+
+        /** 
+         * @param {number} value
+         * @return {void}
+         */
+        CQueue.prototype.appendTail = function (value) {
+            this.queue.push(value)
+        };
+
+        /**
+         * @return {number}
+         */
+        CQueue.prototype.deleteHead = function () {
+            if (this.queue.length == 0) return -1
+            var len = this.queue.length
+            for (var i = 0; i < len; i++) {
+                this.queue2.push(this.queue.pop())
+            }
+            var num = this.queue2.pop()
+            for (var i = 0; i < len-1; i++) {
+                this.queue.push(this.queue2.pop())
+            }
+            return num
+        };
+
+        /**
+         * Your CQueue object will be instantiated and called as such:
+         * var obj = new CQueue()
+         * obj.appendTail(value)
+         * var param_2 = obj.deleteHead()
+         */
+
+        var obj = new CQueue()
+        obj.appendTail(5)
+        obj.appendTail(2)
+        console.log(obj.deleteHead())
+        console.log(obj.deleteHead())
     </script>
 </body>
 
