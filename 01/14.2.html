@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var cuttingRope = function(n) {
+            if (n == 2) return 1
+            if (n == 3) return 2
+            let k = []
+            k[0] = BigInt(0)
+            k[1] = BigInt(1)
+            f(n,k)
+            return k[n] % BigInt(1000000007)
+        }
+        function f(n,k) {
+            if (k[n]) return
+            k[n] = BigInt(n)
+            for (let i = 1; i < Math.floor(n/2)+1; i++) {
+                f(i,k)
+                f(n-i,k)
+                if (k[i] * k[n-i] > k[n]) k[n] = BigInt(k[i] * k[n-i])
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 递归调用函数，数组记录最大值
+        // 剪成i, n-i  for i=1 ~ Math.floor(n/2)
+        // 数组有值就取数组，没值就调用函数
+        var cuttingRope = function(n) {
+            if (n == 2) return 1
+            if (n == 3) return 2
+            let k = [0, 1]
+            f(n,k)
+            return k[n]
+        }
+        function f(n,k) {
+            if (k[n]) return
+            k[n] = n
+            for (let i = 1; i < Math.floor(n/2)+1; i++) {
+                f(i,k)
+                f(n-i,k)
+                if (k[i] * k[n-i] > k[n]) k[n] = k[i] * k[n-i]
+            }
+        }
+    </script>
+</body>
+</html>
