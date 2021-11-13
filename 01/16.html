@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // var myPow = function(x, n) {
+    //     let result = 1
+    //     if (n > 0) {
+    //         for (let i = 0; i < n; i++) {
+    //             result = result*x
+    //         }
+    //     } else if (n == 0) {
+    //         result = 1
+    //     } else {
+    //         for (let i = 0; i < -n; i++) {
+    //             result = result*(1/x)
+    //         }
+    //     }
+    //     return result
+    // };
+
+    var myPow = function(x, n) {
+        if (n === 0) return 1
+        if (n === 1) return x
+        if (n === -1) return 1 / x;
+        let result = myPow(x, Math.floor(n/2))
+        result *= result
+        if (Math.abs(n % 2) == 1) result *= x
+        return result
+    };
+
+    </script>
+</body>
+</html>
