@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var deleteNode = function(head, val) {
+        //     if (head.val == val) return head.next 
+        //     let h2 = head
+        //     while (h2.next != null) {
+        //         if (h2.next.val == val) {
+        //             h2.next = h2.next.next
+        //             break
+        //         }
+        //         h2 = h2.next
+        //     }
+        //     return head
+        // };
+
+        var deleteNode = function(head, val) {
+            if (head.val == val) return head.next 
+            let h2 = head
+            head.next = deleteNode(head.next,val)
+            return head
+        };
+    </script>
+</body>
+</html>
