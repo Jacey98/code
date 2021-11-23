@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val) {
+         *     this.val = val;
+         *     this.left = this.right = null;
+         * }
+         */
+        /**
+         * @param {TreeNode} A
+         * @param {TreeNode} B
+         * @return {boolean}
+         */
+        var isSubStructure = function(A, B) {
+            
+            return allA(A, B)
+
+            function allA (A, B) {
+                if (!A || !B) return false
+                if (A.val === B.val) {
+                    if (isEqual(A.left, B.left) && isEqual(A.right, B.right)) return true
+                }
+                if (allA(A.left, B) || allA(A.right, B)) return true
+                return false
+            }
+
+            function isEqual (a, b) {
+                if (!b) return true
+                if (!a || a.val !== b.val) return false
+                if (isEqual(a.left, b.left) && isEqual(a.right, b.right)) return true
+            }
+
+        };
+    </script>
+</body>
+</html>
