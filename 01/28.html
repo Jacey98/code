@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val) {
+         *     this.val = val;
+         *     this.left = this.right = null;
+         * }
+         */
+        /**
+         * @param {TreeNode} root
+         * @return {boolean}
+         */
+        var isSymmetric = function(root) {
+            if (root === null) return true
+
+            return equal(root.left, root.right)
+
+            function equal(root, root2) {
+                if (root === null && root2 === null) return true
+                if (root === null || root2 === null) return false
+                if (root.val !== root2.val) return false
+                if (equal(root.left, root2.right) && equal(root.right, root2.left)) return true
+                return false
+            }
+        };
+    </script>
+</body>
+</html>

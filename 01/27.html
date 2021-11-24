@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val) {
+         *     this.val = val;
+         *     this.left = this.right = null;
+         * }
+         */
+        /**
+         * @param {TreeNode} root
+         * @return {TreeNode}
+         */
+        var mirrorTree = function(root) {
+            if (root === null) return root
+            let root2 = new TreeNode(root.val)
+            change(root, root2)
+            return root2
+            function change(root, root2) {
+                if (root.left !== null) {
+                    let root2r = new TreeNode(root.left.val)
+                    root2.right = root2r
+                    change(root.left, root2.right)
+                }
+                if (root.right !== null) {
+                    let root2l = new TreeNode(root.right.val)
+                    root2.left = root2l
+                    change(root.right, root2.left)
+                }
+            }
+        };
+    </script>
+</body>
+</html>
