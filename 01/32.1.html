@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val) {
+         *     this.val = val;
+         *     this.left = this.right = null;
+         * }
+         */
+        /**
+         * @param {TreeNode} root
+         * @return {number[]}
+         */
+        var levelOrder = function(root) {
+            if (root === null) return []
+            let queue = []
+            let node = []
+            queue.push(root)
+            while (queue.length) {
+                let i = queue.shift()
+                node.push(i.val)
+                if (i.left !== null) {
+                    queue.push(i.left)
+                }
+                if (i.right !== null) {
+                    queue.push(i.right)
+                }
+            }
+            return node
+        };
+    </script>
+</body>
+</html>

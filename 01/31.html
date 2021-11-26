@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number[]} pushed
+         * @param {number[]} popped
+         * @return {boolean}
+         */
+        var validateStackSequences = function(pushed, popped) {
+            if (pushed.length === 0) return true
+            let stack = []
+            while (pushed.length !== 0) {
+                stack.unshift(pushed.shift())
+                while (stack[0] === popped[0] && stack.length !== 0) {
+                    stack.shift()
+                    popped.shift()
+                }
+            }
+            return popped.length === 0
+        };
+        
+        console.log(validateStackSequences([1,2,3,4,5],[4,5,3,2,1]))
+    </script>
+</body>
+</html>
