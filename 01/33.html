@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number[]} postorder
+         * @return {boolean}
+         */
+        var verifyPostorder = function(postorder) {
+            let len = postorder.length
+            if (len === 0 || len === 1) return true
+            let i
+            for (i = 0; i < len-1; i++) {
+                if (postorder[i] > postorder[len-1]) break
+            }
+            if (i === len-1) return verifyPostorder(postorder.slice(0,len-1))
+            else {
+                for (let j = i+1; j < len-1; j++) {
+                    if (postorder[j] < postorder[len-1]) return false
+                }
+                return verifyPostorder(postorder.slice(0,i)) && verifyPostorder(postorder.slice(i,len-1))
+            }
+        };
+    </script>
+</body>
+</html>
