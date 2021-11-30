@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * // Definition for a Node.
+         * function Node(val, next, random) {
+         *    this.val = val;
+         *    this.next = next;
+         *    this.random = random;
+         * };
+         */
+
+        /**
+         * @param {Node} head
+         * @return {Node}
+         */
+        var copyRandomList = function(head) {
+            if (head === null) return null
+            let odd = head, random, even, head2
+
+            while (odd !== null) {
+                let clone = new Node(odd.val, odd.next)
+                odd.next = clone
+                odd = clone.next
+            }
+
+            odd = head
+            while (odd !== null) {
+                random = odd.random
+                if (random === null) odd.next.random = null
+                else odd.next.random = random.next
+                odd = odd.next.next
+            }
+            
+            even = head.next
+            head2 = even
+            while (even !== null && even.next !== null) {
+                head.next = head.next.next
+                head = head.next
+                even.next = even.next.next
+                even = even.next
+            }
+            head.next = head.next.next
+
+            return head2
+
+        };
+
+
+    </script>
+</body>
+</html>
