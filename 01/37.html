@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val) {
+         *     this.val = val;
+         *     this.left = this.right = null;
+         * }
+         */
+
+        /**
+         * Encodes a tree to a single string.
+         *
+         * @param {TreeNode} root
+         * @return {string}
+         */
+        var serialize = function(root) {
+            if (!root) return null
+            let data = ''
+            data = data.concat(root.val)
+            let nodeQueue = [root]
+            while (nodeQueue.length) {
+                let node = nodeQueue.shift()
+                if (!node.left) data = data.concat(',$')
+                else {
+                    data = data.concat(',' + node.left.val)
+                    nodeQueue.push(node.left)
+                }
+                if (!node.right) data = data.concat(',$')
+                else {
+                    data = data.concat(',' + node.right.val)
+                    nodeQueue.push(node.right)
+                }
+            }
+            return data
+        };
+
+        /**
+         * Decodes your encoded data to tree.
+         *
+         * @param {string} data
+         * @return {TreeNode}
+         */
+        var deserialize = function(data) {
+            // 1,2,3,$,$,4,5,$,$,$,$
+            if (!data) return null
+            let dataArray = data.split(',')
+            let root = new TreeNode(dataArray[0])
+            let i = 1
+            let head = root
+            let nodeQueue = [root]
+            while (nodeQueue.length) {
+                let node = nodeQueue.shift()
+                if (dataArray[i] !== '$') {
+                    node.left = new TreeNode(dataArray[i])
+                    nodeQueue.push(node.left)
+                }
+                i++
+                if (dataArray[i] !== '$') {
+                    node.right = new TreeNode(dataArray[i])
+                    nodeQueue.push(node.right)
+                } 
+                i++
+            }
+            return head
+        };
+
+        /**
+         * Your functions will be called as such:
+         * deserialize(serialize(root));
+         */
+    </script>
+   
+</body>
+</html>
