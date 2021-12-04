@@ -18,7 +18,7 @@
             return stringArray
 
             function recursive (s, string) {
-                while (!s.length) {
+                if (!s.length) {
                     if (stringArray.indexOf(string) === -1) stringArray.push(string)
                     return
                 }

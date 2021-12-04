@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @return {number}
+         */
+        // var majorityElement = function(nums) {
+        //     // nums.sort((a,b) => a-b)
+        //     nums.sort()
+        //     return nums[Math.ceil(nums.length/2-1)]
+        // };
+
+        var majorityElement = function(nums) {
+            let count = 0;
+            let candidate;
+
+            for (let num = 0; num < nums.length; num++) {
+                if (count == 0) {
+                    candidate = nums[num];
+                }
+                count += (nums[num] == candidate) ? 1 : -1;
+            }
+
+            return candidate;
+        };
+    </script>
+</body>
+</html>
