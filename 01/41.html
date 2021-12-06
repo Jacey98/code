@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * initialize your data structure here.
+         */
+        var MedianFinder = function() {
+            let array = []
+        };
+
+        /** 
+         * @param {number} num
+         * @return {void}
+         */
+        MedianFinder.prototype.addNum = function(num) {
+            if (!this.array) {
+                this.array = [num]
+                return
+            }
+            let len = this.array.length
+            for (let i = len-1; i >= 0; i--) {
+                if (this.array[i] < num) {
+                    this.array[i+1] = this.array[i]
+                    this.array[i] = num
+                } else {
+                    this.array[i+1] = num
+                    break
+                }
+            }
+        };
+
+        /**
+         * @return {number}
+         */
+        MedianFinder.prototype.findMedian = function() {
+            if (!this.array.length) return null
+            return this.array.length%2 ? this.array[Math.floor(this.array.length/2)] : (this.array[this.array.length/2] + this.array[this.array.length/2 - 1])/2
+        };
+
+        /**
+         * Your MedianFinder object will be instantiated and called as such:
+         * var obj = new MedianFinder()
+         * obj.addNum(num)
+         * var param_2 = obj.findMedian()
+         */
+
+        var obj = new MedianFinder()
+        obj.addNum(-1)
+        obj.addNum(-2)
+        var param_1 = obj.findMedian()
+        obj.addNum(-3)
+        var param_2 = obj.findMedian()
+        console.log(param_1)
+        console.log(param_2)
+    </script>
+</body>
+</html>
