@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number} n
+         * @return {number}
+         */
+
+        // ???
+        // var findNthDigit = function(n) {
+        //     if (n<10) return n
+        //     let k
+        //     let k10 = 0.1
+        //     let sum = 0
+        //     for (k = 0; n > sum;) {
+        //         k++
+        //         k10 *= 10
+        //         sum += 9*k10*k
+        //     }
+        //     sum -= 9*k10*k
+        //     let num = Math.floor((n-sum)/k) + k10 - 1
+        //     let wei = (n-sum)%k 
+        //     return Math.floor(num/(10**wei))%10
+        // };
+        // 1-9 n- 0
+        // 10-99 n- 9*1 /2 
+        // 100-999 n- 9+ 90*2 /3
+        // 1000-9999 n- 9+ 90*2+ 900*3 /4
+
+        var findNthDigit = function(n) {
+            for (let bit = 1; bit < 32; ++bit) {
+                const startNum = Math.pow(10, bit - 1);
+                const bitSum = 9 * startNum * bit;
+                if (n > bitSum) {
+                    n -= bitSum;
+                } else {
+                    let num = startNum + Math.ceil(n / bit) - 1;
+                    let pos = n - bit * (num - startNum) - 1;
+                    return num.toString(10)[pos];
+                }
+            }
+        };
+    </script>
+</body>
+</html>
