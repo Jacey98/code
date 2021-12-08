@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @return {string}
+         */
+
+        //  xxx
+        // var minNumber = function(nums) {
+        //     if (nums.length === 0) return ""
+        //     nums.sort((a,b) => {
+        //         let ar = a.toString().split('')
+        //         let br = b.toString().split('')
+        //         let change = false
+        //         if (ar.length > br.length) {
+        //             change = true
+        //             let c = ar
+        //             ar = br
+        //             br = c
+        //         }
+        //         let i = 0
+        //         while (ar[i] === br[i]) {
+        //             i++
+        //             if (ar[i] === undefined) {
+        //                 if (br[i] === undefined) return 0
+        //                 ar[i] = ar[i-1]
+        //             }
+        //         }
+        //         if ((ar[i] > br[i] && change) || (ar[i] < br[i] && !change)) return -1
+        //         else return 1
+        //     })
+        //     // nums.sort()
+        //     let i
+        //     let s = ''
+        //     while ((i = nums.shift()) !== undefined) {
+        //         s = s.concat(i)
+        //     }
+        //     return s
+        // };
+        // console.log(minNumber([121,12]))
+
+        var minNumber = function(nums) {
+            if (nums.length === 0) return ""
+            nums.sort((a,b) => {
+                let as = a.toString()
+                let bs = b.toString()
+                let ab = as.concat(bs)
+                let ba = bs.concat(as)
+                if (ab > ba) return 1
+                else return -1
+            })
+            // nums.sort()
+            let i
+            let s = ''
+            while ((i = nums.shift()) !== undefined) {
+                s = s.concat(i)
+            }
+            return s
+        };
+    </script>
+</body>
+</html>
