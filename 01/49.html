@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number} n
+         * @return {number}
+         */
+        // var nthUglyNumber = function(n) {
+        //     let i = 0,num = 1
+        //     for (;i<n;num++) {
+        //         if (ugly(num)) i++
+        //     }
+        //     return num-1
+
+        //     function ugly(num){
+        //         while (num%2 === 0) {
+        //             num /= 2
+        //         }
+        //         while (num%3 === 0) {
+        //             num /= 3
+        //         }
+        //         while (num%5 === 0) {
+        //             num /= 5
+        //         }
+        //         return (num === 1)
+        //     }
+        // };
+
+        var nthUglyNumber = function(n) {
+            const dp = new Array(n + 1).fill(0);
+            dp[1] = 1;
+            let p2 = 1, p3 = 1, p5 = 1;
+            for (let i = 2; i <= n; i++) {
+                const num2 = dp[p2] * 2, num3 = dp[p3] * 3, num5 = dp[p5] * 5;
+                dp[i] = Math.min(Math.min(num2, num3), num5);
+                if (dp[i] === num2) {
+                    p2++;
+                }
+                if (dp[i] === num3) {
+                    p3++;
+                }
+                if (dp[i] === num5) {
+                    p5++;
+                }
+            }
+            return dp[n];
+        };
+
+    </script>
+</body>
+</html>
