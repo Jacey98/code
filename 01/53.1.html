@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @param {number} target
+         * @return {number}
+         */
+        var search = function(nums, target) {
+            if (nums.length === 0) return 0
+            let len = nums.length
+            let count = 0, min = 0, max = len-1
+            let middle = Math.floor((max+min)/2)
+            
+            while (middle >= min) {
+                if (nums[middle] === target) {
+                    count ++
+                    for (let i = middle-1; i>=min; i--) {
+                        if (nums[i] === target) count ++
+                        else break
+                    }
+                    for (let i = middle+1; i<=max; i++) {
+                        if (nums[i] === target) count ++
+                        else break
+                    }
+                    return count
+                }else if (nums[middle] > target) {
+                    max = middle-1
+                    middle = Math.floor((max+min)/2)
+                }else {
+                    min = middle+1
+                    middle = Math.floor((max+min)/2)
+                }
+
+            }
+            return 0
+        };
+    </script>
+</body>
+</html>

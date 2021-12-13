@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @return {number}
+         */
+        var missingNumber = function(nums) {
+            let len = nums.length
+            let min = 0, max = len-1, middle = Math.floor((max+min)/2)
+
+            while (min <= max) {
+                if (nums[middle] === middle) {
+                    min = middle+1
+                    middle = Math.floor((max+min)/2)
+                }else if (nums[middle-1] === (middle-1)) return middle
+                else {
+                    max = middle-1
+                    middle = Math.floor((max+min)/2)
+                }
+            }
+
+            return min
+        };
+    </script>
+</body>
+</html>
