@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val) {
+         *     this.val = val;
+         *     this.left = this.right = null;
+         * }
+         */
+        /**
+         * @param {TreeNode} root
+         * @param {number} k
+         * @return {number}
+         */
+        var kthLargest = function(root, k) {
+            let num
+            dfs(root)
+            return num
+
+            function dfs(node) {
+                if (node.right !== null) {
+                    dfs(node.right)
+                }
+                k-- 
+                if (k === 0) num = node.val
+                if (node.left !== null) {
+                    dfs(node.left)
+                }
+            }
+        };
+    </script>
+</body>
+</html>

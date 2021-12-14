@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val) {
+         *     this.val = val;
+         *     this.left = this.right = null;
+         * }
+         */
+        /**
+         * @param {TreeNode} root
+         * @return {boolean}
+         */
+        var isBalanced = function(root) {
+            if (root === null) return true
+            if (!isBalanced(root.left) || !isBalanced(root.right)) return false
+            if (Math.abs(maxDepth(root.left) - maxDepth(root.right)) <= 1) return true
+            else return false
+        };
+        function maxDepth(root) {
+            let max = 0
+            dfs(root, 0)
+            return max
+
+            function dfs (node, d) {
+                if (node !== null) d++
+                else {
+                    max = Math.max(max,d)
+                    return
+                }
+
+                dfs(node.left, d)
+                dfs(node.right, d)
+            }
+        };
+    </script>
+</body>
+</html>
