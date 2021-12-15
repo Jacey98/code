@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * @param {number[]} nums
+        * @return {number[]}
+        */
+        // var singleNumbers = function(nums) {
+        //     let s = new Set()
+        //     let len = nums.length
+        //     for (let i = 0; i < len; i++) {
+        //         s.has(nums[i]) ? s.delete(nums[i]) : s.add(nums[i])
+        //     }
+        //     return [...s]
+        // };
+
+        const singleNumbers = (nums) => {
+            let ret = 0;
+            const len = nums.length;
+            // 先对所有数字进行一次异或，得到两个出现一次的数字的异或值。
+            for (let i = 0; i < len; i++) {
+                ret = ret ^ nums[i];
+            }
+            // 此时ret是两个不同的数异或的结果
+            // 寻找div，div是ret最低位为1、其余位是0的二进制数
+            let div = 1;
+            while ((ret & div) === 0) div = div << 1; //在异或结果中找到最右侧为 1 的位
+
+            let [a, b] = [0, 0];
+            for (let i = 0; i < len; i++) {
+                // 根据这一位对所有的数字进行分组。在每个组内进行异或操作，得到两个数字
+                if (nums[i] & div) {
+                a = a ^ nums[i];
+                } else {
+                b = b ^ nums[i];
+                }
+            }
+            return [a, b];
+        };
+    </script>
+</body>
+</html>
