@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {string} s
+         * @param {number} n
+         * @return {string}
+         */
+        var reverseLeftWords = function(s, n) {
+            let str = ''
+            str = str.concat(s.slice(n,s.length), s.slice(0,n))
+            return str
+        };
+    </script>
+</body>
+</html>
