@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number} a
+         * @param {number} b
+         * @return {number}
+         */
+        var add = function(a, b) {
+            let sum, carry
+            do {
+                sum = a ^ b
+                carry = (a & b) << 1
+                a = sum
+                b = carry
+            } while (b != 0)
+
+            return a
+        };
+    </script>
+</body>
+</html>
