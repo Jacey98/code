@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {string} str
+         * @return {number}
+         */
+        var strToInt = function(str) {
+            const len = str.length, reg = /[0-9]/
+            let i, sign = 1
+            for (i = 0; i < len; i++) {
+                if (str[i] === ' ') continue
+                if (str[i] === '+' || str[i] === '-') {
+                    if (reg.test(str[i+1])) {
+                        sign = str[i] === '+' ? 1 : -1
+                        i++
+                        break
+                    } else return 0
+                }
+                if (reg.test(str[i])) break
+                return 0
+            }
+
+            for (j = i+1; reg.test(str[j]); j++) {}
+            const num = str.slice(i,j) * sign
+            const INT_MAX = 2**31 - 1
+            const INT_MIN = 2**31 * -1
+            if (num > INT_MAX) return INT_MAX
+            if (num < INT_MIN) return INT_MIN
+            return num
+        };
+    </script>
+</body>
+</html>
