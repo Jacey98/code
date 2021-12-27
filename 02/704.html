@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @param {number} target
+         * @return {number}
+         */
+        var search = function(nums, target) {
+            let min = 0, max = nums.length-1, middle
+            while(min <= max) {
+                middle = Math.floor((min + max) / 2)
+                if (nums[middle] === target) return middle
+                if (nums[middle] > target) max = middle-1
+                else min = middle + 1 
+            }
+            return -1
+        };
+    </script>
+</body>
+</html>
