@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @return {number[]}
+         */
+        var sortedSquares = function(nums) {
+            let len = nums.length, j = 0
+            while (nums[j] < 0) j++
+            let i = j-1, arr = []
+            while (i >= 0 && j < len) {
+                if (nums[i] + nums[j] > 0) {
+                    arr.push(nums[i]*nums[i])
+                    i--
+                } else {
+                    arr.push(nums[j]*nums[j])
+                    j++
+                }
+            }
+            while (i >= 0) {
+                arr.push(nums[i]*nums[i])
+                i--
+            }
+            while (j < len) {
+                arr.push(nums[j]*nums[j])
+                j++
+            }
+            return arr
+        };
+    </script>
+</body>
+</html>
