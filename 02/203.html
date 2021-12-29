@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for singly-linked list.
+         * function ListNode(val, next) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.next = (next===undefined ? null : next)
+         * }
+         */
+        /**
+         * @param {ListNode} head
+         * @param {number} val
+         * @return {ListNode}
+        //  */
+        // var removeElements = function(head, val) {
+        //     let node = head, pre = new ListNode(-1, node)
+        //     while (node) {
+        //         if (node.val === val) {
+        //             if (node === head) {
+        //                 head = head.next
+        //                 node = head
+        //                 pre.next = node
+        //             } else {
+        //                 pre.next = node.next
+        //                 node = node.next
+        //             }
+        //         }else {
+        //             pre = pre.next
+        //             node = node.next
+        //         }
+        //     }
+        //     return head
+        // };
+
+        var removeElements = function(head, val) {
+            const pre = new ListNode(-1, head)
+            let node = pre
+            while (node.next) {
+                if (node.next.val === val) node.next = node.next.next
+                else node = node.next
+            }
+            return pre.next
+        };
+    </script>
+</body>
+</html>
