@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var MyLinkedList = function() {
+            let head, tail
+        };
+
+        MyLinkedList.prototype.ListNode = function(val, prev, next){
+            this.val = (val===undefined ? 0 : val)
+            this.prev = (prev===undefined ? null : prev)
+            this.next = (next===undefined ? null : next)
+        }
+
+        /** 
+        * @param {number} index
+        * @return {number}
+        */
+        MyLinkedList.prototype.get = function(index) {
+            if (index < 0 || !this.head) return -1
+            let node = this.head
+            while (index && node) {
+                node = node.next
+                index--
+            }
+            if (index >= 0 && !node) return -1
+            else if (!node) return this.tail.val
+            else return node.val
+        };
+
+        /** 
+        * @param {number} val
+        * @return {void}
+        */
+        MyLinkedList.prototype.addAtHead = function(val) {
+            if (!this.head) {
+                let node = new this.ListNode(val)
+                this.head = node
+                this.tail = node
+            } else {
+                let node = new this.ListNode(val, null, this.head)
+                node.next.prev = node
+                this.head = node
+            }
+        };
+
+        /** 
+        * @param {number} val
+        * @return {void}
+        */
+        MyLinkedList.prototype.addAtTail = function(val) {
+            if (!this.head) {
+                let node = new this.ListNode(val)
+                this.head = node
+                this.tail = node
+            } else {
+                let node = new this.ListNode(val, this.tail, null)
+                node.prev.next = node
+                this.tail = node
+            }
+        };
+
+        /** 
+        * @param {number} index 
+        * @param {number} val
+        * @return {void}
+        */
+        MyLinkedList.prototype.addAtIndex = function(index, val) {
+            if (index < 0) this.addAtHead(val)
+            else if (!this.head) {
+                if (!index) this.addAtHead(val)
+                else return 
+            }else {
+                let node = this.head
+                while (index && node) {
+                    node = node.next
+                    index--
+                }
+                if (!node && index>0) return
+                else if (!node) this.addAtTail(val)
+                else if (node === this.head) this.addAtHead(val)
+                else {
+                    let node2 = new this.ListNode(val,node.prev,node)
+                    node.prev = node2
+                    node2.prev.next = node2
+                }
+            }
+        };
+
+        /** 
+        * @param {number} index
+        * @return {void}
+        */
+        MyLinkedList.prototype.deleteAtIndex = function(index) {
+            if (index < 0 || !this.head) return
+            else {
+                let node = this.head
+                while (index && node) {
+                    node = node.next
+                    index--
+                }
+                if (!node && index>=0) return
+                else if (node === this.tail) {
+                    this.tail = this.tail.prev
+                    if (!this.tail) this.head = null
+                    else this.tail.next = null
+                } else if (node === this.head) {
+                    this.head = this.head.next
+                    if (!this.head) this.tail = null
+                    else this.head.prev = null
+                } else {
+                    node.prev.next = node.next
+                    node.next.prev = node.prev
+                }
+            }
+        };
+
+        // var obj = new MyLinkedList()
+        // obj.addAtHead(1)
+        // obj.addAtTail(4)
+        // obj.get(1)
+        // obj.addAtTail(3)
+        // obj.addAtIndex(3,0)
+        // obj.deleteAtIndex(2)
+    </script>
+</body>
+</html>
