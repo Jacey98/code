@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number} n
+         * @return {boolean}
+         */
+        var isHappy = function(n) {
+            let set = new Set(), sum = n
+            do {
+                sum = sumSquares(sum)
+                if (set.has(sum)) return false
+                else set.add(sum)
+            }while (sum !== 1)
+            return true
+
+            function sumSquares(n) {
+                let sum = 0
+                do {
+                    let num = n%10
+                    sum += num*num
+                    n = Math.floor(n/10)
+                } while (n)
+                return sum
+            }
+        };
+    </script>
+</body>
+</html>
