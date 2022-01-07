@@ -8,7 +8,24 @@
 </head>
 <body>
     <script>
-        
+        /**
+        * @param {number[]} nums
+        * @param {number} target
+        * @return {number[]}
+        */
+        var twoSum = function(nums, target) {
+            let set = new Set(nums)
+            let len = nums.length
+            for (let i = 0; i < len; i++) {
+                if (set.has(target - nums[i])) {
+                    for (let j = 0; j < len; j++) {
+                        if (nums[j] === target - nums[i] && i !== j) {
+                            return [i,j]
+                        }
+                    }
+                }
+            }
+        };
     </script>
 </body>
 </html>
