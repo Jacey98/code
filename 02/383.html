@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {string} ransomNote
+         * @param {string} magazine
+         * @return {boolean}
+         */
+        var canConstruct = function(ransomNote, magazine) {
+            let arr = new Array(26).fill(0), code = 'a'.charCodeAt()
+            let len = magazine.length, len2 = ransomNote.length
+            for (let i = 0; i < len; i++) {
+                arr[magazine.charCodeAt(i) - code]++
+            }
+            for (let i = 0; i < len2; i++) {
+                let c = ransomNote.charCodeAt(i) - code
+                if (arr[c] > 0) arr[c]--
+                else return false
+            }
+            return true
+        };
+    </script>
+</body>
+</html>

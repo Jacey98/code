@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * @param {number[]} nums1
+        * @param {number[]} nums2
+        * @param {number[]} nums3
+        * @param {number[]} nums4
+        * @return {number}
+        */
+        // var fourSumCount = function(nums1, nums2, nums3, nums4) {
+        //     let len = nums1.length, count = 0
+        //     for (let i = 0; i < len; i++) {
+        //         for (let j = 0; j < len; j++) {
+        //             for (let k = 0; k < len; k++) {
+        //                 for (let l = 0; l < len; l++) {
+        //                     if (nums1[i] + nums2[j] + nums3[k] + nums4[l] === 0) {
+        //                         count++
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     return count
+        // };
+
+        var fourSumCount = function(nums1, nums2, nums3, nums4) {
+            let map = new Map()
+            let len = nums1.length, count = 0
+            for (let i = 0; i < len; i++) {
+                for (let j = 0; j < len; j++) {
+                    if (map.has(nums1[i] + nums2[j])) {
+                        map.set(nums1[i] + nums2[j], map.get(nums1[i] + nums2[j]) + 1)
+                    } else {
+                        map.set(nums1[i] + nums2[j], 1)
+                    }
+                }
+            }
+            for (let i = 0; i < len; i++) {
+                for (let j = 0; j < len; j++) {
+                    if (map.has(-nums3[i] - nums4[j])) count += map.get(-nums3[i] - nums4[j])
+                }
+            }
+            return count
+        };
+    </script>
+</body>
+</html>
