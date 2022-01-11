@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @return {number[][]}
+         */
+        // var threeSum = function(nums) {
+        //     let len = nums.length, arr = []
+        //     if (len < 4) return []
+        //     for (let i = 0; i < len-2; i++) {
+        //         let map = new Map()
+        //         for (let m = i+2; m < len; m++) {
+        //             map.set(nums[m], (map.get(nums[m]) || 0) + 1)
+        //         }
+        //         for (let j = i+1; j < len-1; j++) {
+        //             if (map.has(-nums[i]-nums[j])) {
+        //                 arr.push([nums[i], nums[j], -nums[i]-nums[j]])
+        //             }
+        //             map.set(nums[j+1], map.get(nums[j+1]) - 1)
+        //         }
+        //     }
+        //     return arr
+        // };
+
+        
+        
+        var threeSum = function(nums) {
+            let len = nums.length, arr = []
+            if (len < 3) return []
+            nums.sort((a,b) => a-b)
+            for (let i = 0; i < len-2; i++) {
+                if (nums[i] > 0) break
+                if (i > 0 && nums[i] === nums[i-1]) continue
+                let left = i+1, right = len-1
+                while (left < right) {
+                    let sum = nums[i] + nums[left] + nums[right]
+                    if (sum === 0) {
+                        arr.push([nums[i], nums[left], nums[right]])
+                        while (left < right && nums[left] === nums[left+1]) left++
+                        while (left < right && nums[right] === nums[right-1]) right--
+                        left++
+                        right--
+                    }else if (sum > 0) right--
+                    else left++
+                }
+            }
+            return arr
+        };
+    </script>
+</body>
+</html>
