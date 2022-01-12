@@ -16,17 +16,26 @@
         */
         var s = "We are happy.";
 
-        var replaceSpace = function (s) {
-            var r = '';
-            if (s.length == 0)
-                return r;
-            for (var i = 0; i < s.length; i++) {
-                if (s[i] == ' ')
-                    r = r.concat("%20");
-                else
-                    r = r.concat(s[i]);
+        // var replaceSpace = function (s) {
+        //     var r = '';
+        //     if (s.length == 0)
+        //         return r;
+        //     for (var i = 0; i < s.length; i++) {
+        //         if (s[i] == ' ')
+        //             r = r.concat("%20");
+        //         else
+        //             r = r.concat(s[i]);
+        //     }
+        //     return r;
+        // };
+
+        var replaceSpace = function(s) {
+            let str = ''
+            for (let i of s) {
+                if (i === ' ') str = str.concat('%20')
+                else str = str.concat(i)
             }
-            return r;
+            return str
         };
 
         console.log(replaceSpace(s));

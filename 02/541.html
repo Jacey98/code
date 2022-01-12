@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {string} s
+         * @param {number} k
+         * @return {string}
+         */
+        var reverseStr = function(s, k) {
+            let len = s.length, count = Math.floor(len/(2*k)), arr = s.split('')
+            for (let i = 0; i < count; i++) {
+                reverseString(i*2*k, i*2*k + k - 1)
+            }
+            if ((len - count*2*k) < k) {
+                reverseString(count*2*k, len-1)
+            } else {
+                reverseString(count*2*k, count*2*k + k - 1)
+            }
+            return arr.join('')
+
+            function reverseString(begin, end) {
+                for (let i = begin, j = end; i < j; i++, j--) {
+                    [arr[i], arr[j]] = [arr[j], arr[i]]
+                }
+            }
+        };
+
+
+
+        console.log(reverseStr("abcdefg", 2))
+    </script>
+</body>
+</html>
