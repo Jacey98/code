@@ -13,10 +13,24 @@
          * @param {number} n
          * @return {string}
          */
+        // var reverseLeftWords = function(s, n) {
+        //     let str = ''
+        //     str = str.concat(s.slice(n,s.length), s.slice(0,n))
+        //     return str
+        // };
+
         var reverseLeftWords = function(s, n) {
-            let str = ''
-            str = str.concat(s.slice(n,s.length), s.slice(0,n))
-            return str
+            let arr = s.split('')
+            reverseString(0, n-1)
+            reverseString(n, arr.length-1)
+            reverseString(0, arr.length-1)
+            return arr.join('')
+
+            function reverseString(begin, end) {
+                for (let i = begin, j = end; i < j; i++, j--) {
+                    [arr[i], arr[j]] = [arr[j], arr[i]]
+                }
+            }
         };
     </script>
 </body>

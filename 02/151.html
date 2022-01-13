@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {string} s
+         * @return {string}
+         */
+        var reverseWords = function(s) {
+            let arr = s.split(''), len = arr.length, i = 0, j
+            let fast = slow = 0
+            while (fast < len) {
+                if (arr[fast] !== ' ' || (fast !== 0 && arr[fast-1] !== ' ')) {
+                    arr[slow] = arr[fast]
+                    slow++
+                }
+                fast++
+            }
+            if (arr[slow-1] === ' ') slow--
+            arr.length = len = slow
+            
+            reverseString(0, len-1)
+            while (i < len) {
+                if (arr[i] === ' ') {
+                    i++
+                    continue
+                }
+                j = i+1
+                while (arr[j] !== ' ' && j < len) j++
+                reverseString(i, j-1)
+                i = j+1
+            }
+
+            return arr.join('')
+
+            function reverseString(begin, end) {
+                for (let i = begin, j = end; i < j; i++, j--) {
+                    [arr[i], arr[j]] = [arr[j], arr[i]]
+                }
+            }
+        };
+
+        console.log(reverseWords("  hello world  "))
+    </script>
+</body>
+</html>
