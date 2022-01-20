@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @param {number} k
+         * @return {number[]}
+         */
+        var topKFrequent = function(nums, k) {
+            const map = {}, len = nums.length, bucket = [], result = []
+            for (let i = 0; i < len; i++) {
+                map[nums[i]] = (map[nums[i]] || 0) + 1
+            }
+
+            for (let i in map) {
+                if (!bucket[map[i]]) {
+                    bucket[map[i]] = []
+                }
+                bucket[map[i]].push(i)
+            }
+
+            for (let i = bucket.length - 1; i >= 0, result.length < k; i--) {
+                if (bucket[i]) {
+                    result.push(...bucket[i])
+                }
+            }
+            return result
+        };
+
+    </script>
+</body>
+</html>
