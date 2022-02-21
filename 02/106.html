@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val, left, right) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.left = (left===undefined ? null : left)
+         *     this.right = (right===undefined ? null : right)
+         * }
+         */
+        /**
+         * @param {number[]} inorder
+         * @param {number[]} postorder
+         * @return {TreeNode}
+         */
+        var buildTree = function(inorder, postorder) {
+            if (!postorder.length) return null
+            let rootVal = postorder.pop()
+            let rootIndex = inorder.indexOf(rootVal)
+            let root = new TreeNode(rootVal)
+            // console.log(root.val)
+            // console.log(inorder.slice(0, rootIndex))
+            // console.log(inorder.slice(rootIndex + 1))
+            // console.log(postorder.slice(0, rootIndex))
+            // console.log(postorder.slice(rootIndex))
+            root.left = buildTree(inorder.slice(0, rootIndex), postorder.slice(0, rootIndex))
+            root.right = buildTree(inorder.slice(rootIndex + 1), postorder.slice(rootIndex))
+            return root
+        };
+    </script>
+</body>
+</html>
