@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val, left, right) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.left = (left===undefined ? null : left)
+         *     this.right = (right===undefined ? null : right)
+         * }
+         */
+        /**
+         * @param {TreeNode} root1
+         * @param {TreeNode} root2
+         * @return {TreeNode}
+         */
+        // var mergeTrees = function(root1, root2) {
+        //     if (!root1 && !root2) return null
+        //     if (root1 && root2) {
+        //         let node = new TreeNode(root1.val + root2.val)
+        //         node.left = mergeTrees(root1.left, root2.left)
+        //         node.right = mergeTrees(root1.right, root2.right)
+        //         return node
+        //     }
+        //     if (root1) {
+        //         let node = new TreeNode(root1.val)
+        //         node.left = mergeTrees(root1.left, null)
+        //         node.right = mergeTrees(root1.right, null)
+        //         return node
+        //     }
+        //     if (root2) {
+        //         let node = new TreeNode(root2.val)
+        //         node.left = mergeTrees(null, root2.left)
+        //         node.right = mergeTrees(null, root2.right)
+        //         return node       
+        //     }
+        // };
+        var mergeTrees = function(root1, root2) {
+            if (!root1) return root2
+            if (!root2) return root1
+            let root = new TreeNode(root1.val + root2.val)
+            root.left = mergeTrees(root1.left, root2.left)
+            root.right = mergeTrees(root1.right, root2.right)
+            return root
+        };
+    </script>
+</body>
+</html>
