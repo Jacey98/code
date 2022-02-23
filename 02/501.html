@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       /**
+         * Definition for a binary tree node.
+         * function TreeNode(val, left, right) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.left = (left===undefined ? null : left)
+         *     this.right = (right===undefined ? null : right)
+         * }
+         */
+        /**
+         * @param {TreeNode} root
+         * @return {number[]}
+         */
+        var findMode = function(root) {
+            let maxcount = 1, curcount = 1, pre = Infinity, res = []
+            let stack = [], cur = root
+            while(cur || stack.length) {
+                if (cur) {
+                    stack.push(cur)
+                    cur = cur.left
+                } else {
+                    cur = stack.pop()
+                    if (cur.val === pre) {
+                        curcount++
+                        if (curcount > maxcount) {
+                            res = [cur.val]
+                            maxcount = curcount
+                        } else if (curcount === maxcount) res.push(cur.val)
+                    } else {
+                        if (maxcount === 1) res.push(cur.val)
+                        curcount = 1
+                        pre = cur.val
+                    }
+                    cur = cur.right
+                }
+            }
+            return res
+        }; 
+    </script>
+</body>
+</html>

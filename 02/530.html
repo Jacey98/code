@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       /**
+         * Definition for a binary tree node.
+         * function TreeNode(val, left, right) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.left = (left===undefined ? null : left)
+         *     this.right = (right===undefined ? null : right)
+         * }
+         */
+        /**
+         * @param {TreeNode} root
+         * @return {number}
+         */
+        var getMinimumDifference = function(root) {
+            let num, res
+            dfs(root)
+            return res
+            
+            function dfs(root) {
+                if (!root) return 
+                dfs(root.left)
+                if (num !== null && res === null) res = root.val - num
+                else if (num !== null && res !== null) {
+                    res = (root.val - num) > res ? res : root.val - num
+                }
+                num = root.val
+                dfs(root.right)
+            }
+        }; 
+    </script>
+</body>
+</html>
