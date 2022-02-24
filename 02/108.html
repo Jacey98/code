@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val, left, right) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.left = (left===undefined ? null : left)
+         *     this.right = (right===undefined ? null : right)
+         * }
+         */
+        /**
+         * @param {number[]} nums
+         * @return {TreeNode}
+         */
+        var sortedArrayToBST = function(nums) {
+            return tree(0, nums.length-1) 
+
+            function tree(begin, end) {
+                if (begin > end) return null
+                let middle = Math.floor((begin + end)/2)
+                let root = new TreeNode(nums[middle])
+                root.left = tree(begin, middle - 1)
+                root.right = tree(middle + 1, end)
+                return root
+            }
+        };
+    </script>
+</body>
+</html>

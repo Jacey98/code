@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val, left, right) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.left = (left===undefined ? null : left)
+         *     this.right = (right===undefined ? null : right)
+         * }
+         */
+        /**
+         * @param {TreeNode} root
+         * @param {number} low
+         * @param {number} high
+         * @return {TreeNode}
+         */
+        // var trimBST = function(root, low, high) {
+        //     if (!root) return null
+        //     if (root.val > high) return trimBST(root.left, low, high)
+        //     if (root.val < low) return trimBST(root.right, low, high)
+        //     if (root.left) {
+        //         if (root.left.val < low) root.left = trimBST(root.left.right, low, high)
+        //         else root.left.left = trimBST(root.left.left, low, high)
+        //     } 
+        //     if (root.right) {
+        //         if (root.right.val > high) root.right = trimBST(root.right.left, low, high)
+        //         else root.right.right = trimBST(root.right.right, low, high)
+        //     } 
+        //     return root
+        // };
+        var trimBST = function(root, low, high) {
+            if (!root) return null
+            if (root.val > high) return trimBST(root.left, low, high)
+            if (root.val < low) return trimBST(root.right, low, high)
+            root.left = trimBST(root.left, low, high)
+            root.right = trimBST(root.right, low, high)
+            return root
+        };
+    </script>
+</body>
+</html>

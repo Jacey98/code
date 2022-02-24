@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val, left, right) {
+         *     this.val = (val===undefined ? 0 : val)
+              this.left = (left===undefined ? null : left)
+         *     this.right = (right===undefined ? null : right)
+         * }
+         */
+        /**
+         * @param {TreeNode} root
+         * @return {TreeNode}
+         */
+        var convertBST = function(root) {
+            if (!root) return root
+            let pre = new TreeNode(0)
+            tree(root)
+            return root
+
+            function tree(root) {
+                if (!root) return 
+                tree(root.right)
+                root.val += pre.val
+                pre = root
+                tree(root.left)
+            }
+        };
+    </script>
+</body>
+</html>

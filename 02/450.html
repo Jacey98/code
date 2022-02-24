@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val, left, right) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.left = (left===undefined ? null : left)
+         *     this.right = (right===undefined ? null : right)
+         * }
+         */
+        /**
+         * @param {TreeNode} root
+         * @param {number} key
+         * @return {TreeNode}
+         */
+        var deleteNode = function(root, key) {
+            if (!root) return root
+            let node, pre, rootn, rootpre, left = true
+
+            if (root.val === key) {
+                if (root.left && root.right) {
+                    back(root)
+                    node.left = root.left
+                    node.right = root.right
+                    return node
+                } else if (root.left) return root.left
+                return root.right
+            } else if (root.val > key) {
+                rootn = root.left
+                rootpre = root
+            }
+            else {
+                rootn = root.right
+                rootpre = root
+                left = false
+            }
+            if (!rootn) return root 
+
+            while (rootn.val !== key) {
+                if (rootn.val > key) {
+                    rootpre = rootn
+                    rootn = rootn.left
+                    left = true
+                } else {
+                    rootpre = rootn
+                    rootn = rootn.right
+                    left = false
+                }
+                if (!rootn) return root 
+            }
+
+            if (rootn.left && rootn.right) {
+                back(rootn)
+                node.left = rootn.left
+                node.right = rootn.right
+                left ? rootpre.left = node : rootpre.right = node
+            } else if (rootn.left) {
+                left ? rootpre.left = rootn.left : rootpre.right = rootn.left
+            }
+            else {
+                left ? rootpre.left = rootn.right : rootpre.right = rootn.right
+            } 
+            return root
+
+            function back(root){
+                pre = root
+                node = root.right
+                while(node.left) {
+                    pre = node
+                    node = node.left
+                }
+                if (pre === root) pre.right = node.right
+                else pre.left = node.right
+            }
+        };
+    </script>
+</body>
+</html>
