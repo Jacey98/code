@@ -13,27 +13,80 @@
          * @param {number} k
          * @return {number[]}
          */
+        // var topKFrequent = function(nums, k) {
+        //     const map = {}, len = nums.length, bucket = [], result = []
+        //     for (let i = 0; i < len; i++) {
+        //         map[nums[i]] = (map[nums[i]] || 0) + 1
+        //     }
+
+        //     for (let i in map) {
+        //         if (!bucket[map[i]]) {
+        //             bucket[map[i]] = []
+        //         }
+        //         bucket[map[i]].push(i)
+        //     }
+
+        //     for (let i = bucket.length - 1; i >= 0, result.length < k; i--) {
+        //         if (bucket[i]) {
+        //             result.push(...bucket[i])
+        //         }
+        //     }
+        //     return result
+        // };
+
         var topKFrequent = function(nums, k) {
-            const map = {}, len = nums.length, bucket = [], result = []
+            let map = new Map(), len = nums.length
             for (let i = 0; i < len; i++) {
-                map[nums[i]] = (map[nums[i]] || 0) + 1
+                map.set(nums[i], (map.get(nums[i]) || 0) + 1)
             }
+            if (map.size <= k) return [...map.keys()]
 
-            for (let i in map) {
-                if (!bucket[map[i]]) {
-                    bucket[map[i]] = []
-                }
-                bucket[map[i]].push(i)
-            }
+            let heap = new Heap(), res = []
 
-            for (let i = bucket.length - 1; i >= 0, result.length < k; i--) {
-                if (bucket[i]) {
-                    result.push(...bucket[i])
-                }
+            for (let entry of map.entries()) {
+                heap.push(entry)
+                if (heap.size() > k) heap.pop()
             }
-            return result
+            for (let i = heap.size() - 1; i >= 0; i--) {
+                res.unshift(heap.pop()[0])
+            }
+            return res
         };
 
+        function Heap() {
+            this.queue = []
+        }
+
+        Heap.prototype.push = function(entry) {
+            this.queue.push(entry)
+            let index = this.queue.length - 1
+            let parent = Math.floor((index - 1) / 2)
+            while (parent >= 0 && this.queue[parent][1] > this.queue[index][1]) {
+                [this.queue[parent], this.queue[index]] = [this.queue[index], this.queue[parent]]
+                index = parent
+                parent = Math.floor((index - 1) / 2)
+            }
+        }
+
+        Heap.prototype.pop = function() {
+            let res = this.queue[0]
+            this.queue[0] = this.queue.pop()
+            let index = 0, left = 1, child
+            if (this.queue.length < 3) child = 1
+            else child = this.queue[1][1] > this.queue[2][1] ? 2 : 1
+            while (this.queue[child] && this.queue[index][1] > this.queue[child][1]) {
+                [this.queue[child], this.queue[index]] = [this.queue[index], this.queue[child]]
+                index = child
+                left = 2 * index + 1
+                if (this.queue.length < left + 2) child = left
+                else child = this.queue[left][1] > this.queue[left + 1][1] ? left + 1 : left
+            }
+            return res
+        }
+
+        Heap.prototype.size = function() {
+            return this.queue.length
+        }
     </script>
 </body>
 </html>

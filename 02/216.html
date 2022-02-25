@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * @param {number} k
+        * @param {number} n
+        * @return {number[][]}
+        */
+        var combinationSum3 = function(k, n) {
+            if (n < 3 || n > (19-k)*k/2) return []
+            let res = [], cur = []
+            dfs(1, 0)
+            return res
+
+            function dfs(begin, sum) {
+                if (cur.length === k) {
+                    if (sum === n) res.push([...cur])
+                    return
+                }
+                for (let i = begin; i <= 9 - (k - cur.length) + 1; i++) {
+                    if ((sum + i) > n) continue
+                    cur.push(i)
+                    dfs(i+1, sum + i)
+                    cur.pop()
+                }
+            }
+        };
+    </script>
+</body>
+</html>

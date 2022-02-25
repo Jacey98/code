@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * @param {number} n
+        * @param {number} k
+        * @return {number[][]}
+        */
+        var combine = function(n, k) {
+            let res = [], cur = []
+            dfs(1)
+            return res
+
+            function dfs(begin) {
+                if (cur.length === k) {
+                    res.push([...cur])
+                    return
+                }
+                for (let i = begin; i <= n - (k - cur.length) + 1; i++) {
+                    cur.push(i)
+                    dfs(i+1)
+                    cur.pop()
+                }
+            }
+        };
+    </script>
+</body>
+</html>

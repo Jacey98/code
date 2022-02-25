@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * @param {string} digits
+        * @return {string[]}
+        */
+        var letterCombinations = function(digits) {
+            if (digits.length === 0) return []
+            let map = {'2':'abc', '3':'def', '4':'ghi', '5':'jkl', '6':'mno', '7':'pqrs', '8':'tuv', '9':'wxyz'}
+            let res = []
+            dfs(0, '')
+            return res
+
+            function dfs(pos, cur) {
+                if (pos > digits.length - 1) {
+                    res.push(cur)
+                    return
+                }
+                for (let i = 0; i < map[digits[pos]].length; i++) {
+                    dfs(pos + 1, cur.concat(map[digits[pos]][i]))
+                }
+            }
+        };
+    </script>
+</body>
+</html>
