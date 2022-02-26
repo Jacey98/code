@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * @param {number[]} nums
+        * @return {number[][]}
+        */
+        var subsets = function(nums) {
+            let res = [[]], cur = []
+            dfs(0)
+            return res
+
+            function dfs(start) {
+                if (start === nums.length) return
+                for (let i = start; i < nums.length; i++) {
+                    cur.push(nums[i])
+                    res.push([...cur])
+                    dfs(i + 1)
+                    cur.pop()
+                }
+            }
+        };
+    </script>
+</body>
+</html>

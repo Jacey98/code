@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * @param {number[]} candidates
+        * @param {number} target
+        * @return {number[][]}
+        */
+        var combinationSum = function(candidates, target) {
+            let res = [], cur = [], len = candidates.length
+            dfs(0, 0)
+            return res
+
+            function dfs(num, sum) {
+                if (sum > target) return
+                if (sum === target) {
+                    res.push([...cur])
+                    return
+                }
+                for (let i = num; i < len; i++) {
+                    cur.push(candidates[i])
+                    dfs(i, sum + candidates[i])
+                    cur.pop()
+                }
+            }
+        };
+    </script>
+</body>
+</html>

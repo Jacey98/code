@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * @param {string} s
+        * @return {string[]}
+        */
+        var restoreIpAddresses = function(s) {
+            if (s.length < 4 || s.length > 12) return []
+            let res = [], cur = [], len = s.length
+            dfs(0) 
+            return res
+
+            function dfs(start) {
+                if (cur.length === 4 && start === len){
+                    res.push(cur.join('.'))
+                    return
+                } 
+                if ((cur.length === 4 && start !== len) || (cur.length < 4 && ((len - start) < (4-cur.length) || ((len - start) > 3*(4-cur.length))))) return
+
+                for (let i = start; i < (start + 3); i++) {
+                    if ((s[start] === '0' && i > start) || (s[start] === '2' && i === (start + 2) && s[start+1] > 5) || (s[start] === '2' && i === (start + 2) && s[start+1] === '5' && s[start+2] > 5) || (s[start] > 2 && i === (start + 2))) return
+                    cur.push(s.slice(start, i+1))
+                    dfs(i + 1)
+                    cur.pop()
+                }
+            }
+        };
+    </script>
+</body>
+</html>

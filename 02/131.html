@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      /**
+        * @param {string} s
+        * @return {string[][]}
+        */
+        var partition = function(s) {
+            let res = [], cur = []
+            dfs(0)
+            return res
+
+            function dfs(start) {
+                for (let i = 1; i <= s.length; i++) {
+                    if ((start + i) > s.length) return
+                    if (!judge(s.slice(start, start + i))) continue
+                    cur.push(s.slice(start, start + i))
+                    if ((start + i) === s.length) res.push([...cur])
+                    else dfs(start + i)
+                    cur.pop()
+                }
+            }
+
+            function judge(s) {
+                let len = s.length, middle = Math.floor(len/2)
+                for (let i = 0; i < middle; i++) {
+                    if (s[i] !== s[len - i - 1]) return false
+                }
+                return true
+            }
+        };
+    </script>
+</body>
+</html>
