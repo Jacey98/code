@@ -2,18 +2,19 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var subsetsWithDup = function(nums) {
+var findSubsequences = function (nums) {
     let res = [], cur = []
-    nums.sort((a, b) => a-b)
     dfs(0)
     return res
 
     function dfs(start) {
-        res.push([...cur])
+        if (cur.length > 1) res.push([...cur])
+        let used = {}
         for (let i = start; i < nums.length; i++) {
-            if (i !== start && nums[i-1] === nums[i]) continue
+            if ((cur.length && nums[i] < cur[cur.length-1]) || used[nums[i]]) continue
             cur.push(nums[i])
-            dfs(i+1)
+            used[nums[i]] = true
+            dfs(i + 1)
             cur.pop()
         }
     }
