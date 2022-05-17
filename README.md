@@ -4,7 +4,7 @@
 《剑指Offer（第2版）》
 
 02
-LeetCode 分类
+代码随想录 LeetCode 分类
 
 03
 牛客 ACM 模式练习
