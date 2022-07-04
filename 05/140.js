@@ -168,14 +168,33 @@ function MySort(arr) {
     // } 
     // return res
 
-    // 桶排序
-    // 时间复杂度：O()
-    // 空间复杂度：O()
-    
+    // 桶排序 稳定
+    // 时间复杂度：O(n+k)
+    // 空间复杂度：O(k)
+    // let max = Math.max(...arr), min = Math.min(...arr), len = arr.length, size = Math.floor((max - min)/len) + 1
+    // let bucket = new Array(size).fill(0).map(() => new Array())
+    // for (let i of arr) {
+    //     bucket[Math.floor((i - min) / len)].push(i)
+    // }
+    // let res = []
+    // for (let item of bucket) {
+    //     for (let i = 1; i < item.length; i++) {
+    //         for (let j = 0; j < i; j++) {
+    //             if (item[i] <= item[j]) {
+    //                 let val = item[i]
+    //                 item.splice(i, 1)
+    //                 item.splice(j, 0, val)
+    //                 break
+    //             }
+    //         }
+    //     }
+    //     res.push(...item)
+    // }
+    // return res
 
-    // 基数排序
-    // 时间复杂度：O()
-    // 空间复杂度：O()
+    // 基数排序 稳定
+    // 时间复杂度：O(d(n+k))
+    // 空间复杂度：O(n+k)
 
 }
 module.exports = {
